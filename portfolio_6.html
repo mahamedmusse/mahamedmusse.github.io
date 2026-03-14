@@ -1,0 +1,1884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mahamed Musse – Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #fafaf8;
+      --surface: #ffffff;
+      --surface-2: #f5f4f0;
+      --border: #e9e6e0;
+      --border-strong: #d4cfc6;
+      --text: #181816;
+      --muted: #6e6a63;
+      --muted-light: #a09a91;
+      --accent: #1d4f3f;
+      --accent-mid: #2e7a5e;
+      --accent-light: #eaf3ef;
+      --accent-glow: rgba(29,79,63,0.08);
+      --gold: #c9973a;
+      --gold-light: #fdf6e8;
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'Outfit', system-ui, sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+      --radius: 12px;
+      --shadow-sm: 0 1px 4px rgba(0,0,0,0.05), 0 2px 8px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.07), 0 1px 4px rgba(0,0,0,0.04);
+      --shadow-lg: 0 20px 60px rgba(0,0,0,0.1), 0 4px 16px rgba(0,0,0,0.06);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      background: rgba(250,250,248,0.88);
+      backdrop-filter: blur(16px) saturate(1.4);
+      border-bottom: 1px solid var(--border);
+      padding: 0 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--accent); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .nav-resume {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: var(--accent);
+      color: white;
+      padding: 0.5rem 1.1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.825rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      transition: background 0.2s, transform 0.15s;
+      white-space: nowrap;
+    }
+
+    .nav-resume:hover { background: var(--accent-mid); transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    #home {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 10vw 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg-orb {
+      position: absolute;
+      pointer-events: none;
+    }
+
+    .hero-bg-orb-1 {
+      top: -160px; right: -100px;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 40% 40%, #d0ebe2 0%, transparent 65%);
+      opacity: 0.7;
+    }
+
+    .hero-bg-orb-2 {
+      bottom: -200px; left: -100px;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #f5e8d3 0%, transparent 65%);
+      opacity: 0.5;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--gold-light);
+      border: 1px solid rgba(201,151,58,0.25);
+      color: var(--gold);
+      padding: 0.4rem 0.9rem;
+      border-radius: 100px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 1.8rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.1s;
+    }
+
+    .hero-badge-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.75); }
+    }
+
+    .hero-name {
+      font-family: var(--serif);
+      font-size: clamp(3.4rem, 7vw, 6.2rem);
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.15em;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.25s;
+    }
+
+    .hero-name-italic {
+      font-style: italic;
+      color: var(--accent);
+      position: relative;
+      display: inline-block;
+    }
+
+    .hero-name-italic::after {
+      content: '';
+      position: absolute;
+      bottom: 4px; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      border-radius: 2px;
+      opacity: 0.35;
+    }
+
+    .hero-sub {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 480px;
+      font-weight: 300;
+      margin-bottom: 2.8rem;
+      line-height: 1.65;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.4s;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.55s;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent);
+      color: white;
+      padding: 0.8rem 1.8rem;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 12px rgba(29,79,63,0.22);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-mid);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(29,79,63,0.28);
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1.5px solid var(--border-strong);
+      color: var(--text);
+      padding: 0.8rem 1.8rem;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: border-color 0.2s, color 0.2s, transform 0.2s;
+    }
+
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      margin-top: 3.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.7s;
+    }
+
+    .hero-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .hero-stat-num {
+      font-family: var(--serif);
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    .hero-stat-label {
+      font-size: 0.72rem;
+      color: var(--muted-light);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 500;
+    }
+
+    .hero-meta-divider {
+      width: 1px;
+      height: 36px;
+      background: var(--border);
+    }
+
+    /* ── SECTION BASE ── */
+    section {
+      padding: 110px 5vw;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1.2rem;
+      margin-bottom: 4rem;
+    }
+
+    .section-eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      white-space: nowrap;
+      font-family: var(--mono);
+    }
+
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3.5vw, 2.9rem);
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+    }
+
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      margin-bottom: 1.3rem;
+      font-weight: 300;
+      font-size: 1.05rem;
+      line-height: 1.75;
+    }
+
+    .about-text p strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .about-text p:last-child { margin-bottom: 0; }
+
+    .skills-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .skill-group {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.25rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .skill-group:hover {
+      border-color: var(--border-strong);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .skill-group-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .skill-group-icon {
+      width: 20px; height: 20px;
+      border-radius: 5px;
+      background: var(--accent-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+    }
+
+    .skill-group h4 {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      font-family: var(--mono);
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .skill-tag {
+      background: var(--surface-2);
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 0.28rem 0.7rem;
+      border-radius: 6px;
+      font-size: 0.79rem;
+      font-weight: 500;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+
+    .skill-tag:hover {
+      background: var(--accent-light);
+      color: var(--accent);
+      border-color: rgba(29,79,63,0.2);
+    }
+
+    /* ── EDUCATION ── */
+    #education { padding-top: 0; }
+
+    .edu-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem 2.25rem;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 1.5rem;
+      align-items: center;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+
+    .edu-card:hover {
+      box-shadow: var(--shadow-md);
+      border-color: var(--border-strong);
+    }
+
+    .edu-logo {
+      width: 56px; height: 56px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #cc0033 0%, #990000 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1rem;
+      color: white;
+      letter-spacing: -0.02em;
+      font-family: var(--serif);
+      flex-shrink: 0;
+    }
+
+    .edu-info h3 {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      letter-spacing: -0.015em;
+      margin-bottom: 0.2rem;
+    }
+
+    .edu-info p {
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .edu-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .edu-tag {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 0.2rem 0.6rem;
+      border-radius: 5px;
+      font-size: 0.72rem;
+      font-weight: 500;
+    }
+
+    .edu-date {
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .edu-date-pill {
+      display: inline-block;
+      background: var(--gold-light);
+      border: 1px solid rgba(201,151,58,0.2);
+      color: var(--gold);
+      padding: 0.35rem 0.9rem;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      font-family: var(--mono);
+      white-space: nowrap;
+    }
+
+    .edu-gpa {
+      display: block;
+      font-size: 0.78rem;
+      color: var(--muted-light);
+      margin-top: 0.4rem;
+      text-align: right;
+    }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      cursor: pointer;
+      transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card-accent {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-mid));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--border-strong);
+    }
+
+    .project-card:hover .project-card-accent { transform: scaleX(1); }
+
+    .project-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: var(--accent-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      margin-bottom: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .project-card h3 {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.55rem;
+      line-height: 1.25;
+    }
+
+    .project-card p {
+      font-size: 0.865rem;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+      font-weight: 300;
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .project-tag {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      background: var(--surface-2);
+      color: var(--muted);
+      border: 1px solid var(--border);
+      font-weight: 500;
+    }
+
+    .project-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .card-cta {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.01em;
+      transition: gap 0.2s;
+    }
+
+    .project-card:hover .card-cta { gap: 0.65rem; }
+    .card-cta svg { transition: transform 0.2s; }
+    .project-card:hover .card-cta svg { transform: translateX(3px); }
+
+    .card-github {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.75rem;
+      color: var(--muted-light);
+      text-decoration: none;
+      transition: color 0.2s;
+      font-weight: 500;
+    }
+
+    .card-github:hover { color: var(--text); }
+
+    /* ── EXPERIENCE ── */
+    .timeline {
+      position: relative;
+      padding-left: 2.25rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 12px; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--accent), var(--border));
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 3.5rem;
+    }
+
+    .timeline-item:last-child { margin-bottom: 0; }
+
+    .timeline-dot {
+      position: absolute;
+      left: -2.6rem; top: 5px;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2.5px solid var(--bg);
+      box-shadow: 0 0 0 1.5px var(--accent);
+    }
+
+    .timeline-date {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      font-family: var(--mono);
+    }
+
+    .timeline-role {
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      letter-spacing: -0.015em;
+      margin-bottom: 0.15rem;
+    }
+
+    .timeline-company {
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      font-weight: 400;
+    }
+
+    .timeline-bullets {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .timeline-bullets li {
+      font-size: 0.9rem;
+      color: var(--muted);
+      padding-left: 1.1rem;
+      position: relative;
+      font-weight: 300;
+      line-height: 1.55;
+    }
+
+    .timeline-bullets li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0.55em;
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--border-strong);
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      text-align: center;
+    }
+
+    .contact-inner {
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .contact-inner p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      font-weight: 300;
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 0.875rem;
+      font-weight: 500;
+      padding: 0.65rem 1.25rem;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      background: var(--surface);
+      transition: border-color 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+
+    .contact-link:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 5vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1120px;
+      margin: 0 auto;
+      font-size: 0.8rem;
+      color: var(--muted-light);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ══════════════════════════════════════
+       MODAL
+    ══════════════════════════════════════ */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(14,14,12,0.5);
+      backdrop-filter: blur(8px) saturate(0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal {
+      background: var(--surface);
+      border-radius: 18px;
+      width: 100%;
+      max-width: 920px;
+      max-height: 90vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.06);
+      transform: translateY(28px) scale(0.97);
+      transition: transform 0.35s cubic-bezier(0.34,1.4,0.64,1);
+    }
+
+    .modal-overlay.open .modal {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.4rem 1.75rem;
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .modal-header-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .modal-icon {
+      width: 44px; height: 44px;
+      border-radius: 11px;
+      background: var(--accent-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .modal-title-group { display: flex; flex-direction: column; gap: 0.15rem; }
+
+    .modal-title {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      letter-spacing: -0.02em;
+    }
+
+    .modal-subtitle {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-weight: 400;
+      font-family: var(--mono);
+    }
+
+    .modal-header-right {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .modal-github-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 0.45rem 0.9rem;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .modal-github-link:hover { color: var(--text); border-color: var(--border-strong); }
+
+    .modal-close {
+      width: 36px; height: 36px;
+      border-radius: 9px;
+      border: 1.5px solid var(--border);
+      background: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+      flex-shrink: 0;
+    }
+
+    .modal-close:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-light);
+    }
+
+    .modal-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.75rem;
+      gap: 0;
+      flex-shrink: 0;
+      background: var(--surface-2);
+    }
+
+    .modal-tab {
+      padding: 0.8rem 1.25rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--muted);
+      cursor: pointer;
+      border: none;
+      background: none;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: color 0.2s, border-color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      letter-spacing: 0.01em;
+      font-family: var(--sans);
+    }
+
+    .modal-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+    .modal-tab:hover:not(.active) { color: var(--text); }
+
+    .modal-body { overflow-y: auto; flex: 1; }
+
+    /* Overview tab */
+    .overview-panel {
+      padding: 1.75rem;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 2rem;
+    }
+
+    .overview-left {}
+
+    .modal-description {
+      font-size: 0.95rem;
+      color: var(--muted);
+      font-weight: 300;
+      line-height: 1.7;
+      margin-bottom: 1.75rem;
+    }
+
+    .modal-section-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      font-family: var(--mono);
+      margin-bottom: 0.75rem;
+    }
+
+    .feature-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-size: 0.875rem;
+      color: var(--text);
+      padding: 0.4rem 0;
+    }
+
+    .feature-check {
+      width: 18px; height: 18px;
+      border-radius: 5px;
+      background: var(--accent-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .overview-right {}
+
+    .stack-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .stack-badge {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.4rem 0.9rem;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      font-family: var(--mono);
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+    }
+
+    .stack-badge:hover {
+      background: var(--accent-light);
+      border-color: rgba(29,79,63,0.2);
+      color: var(--accent);
+    }
+
+    .project-links-panel {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.25rem;
+    }
+
+    .project-link-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .project-link-item:last-child { border-bottom: none; }
+
+    .project-link-label {
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .project-link-val {
+      font-size: 0.82rem;
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .project-link-val:hover { text-decoration: underline; }
+
+    /* Preview tab */
+    .preview-panel {
+      padding: 1.5rem;
+    }
+
+    .preview-frame-wrap {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .preview-frame-bar {
+      background: var(--surface-2);
+      padding: 0.6rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .frame-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+    }
+
+    .dot-red { background: #ff5f57; }
+    .dot-yellow { background: #febc2e; }
+    .dot-green { background: #28c840; }
+
+    .frame-url {
+      flex: 1;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.28rem 0.8rem;
+      font-size: 0.73rem;
+      color: var(--muted);
+      font-family: var(--mono);
+      margin-left: 0.5rem;
+    }
+
+    .preview-iframe {
+      width: 100%;
+      height: 420px;
+      border: none;
+      background: white;
+    }
+
+    /* Code tab */
+    .code-panel {
+      background: #16161a;
+      min-height: 100%;
+    }
+
+    .code-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.8rem 1.25rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .code-filename {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: #7d8590;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .code-lang-badge {
+      background: rgba(29,79,63,0.4);
+      color: #6dd5b0;
+      padding: 0.15rem 0.55rem;
+      border-radius: 4px;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .copy-btn {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #7d8590;
+      padding: 0.3rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      font-family: var(--sans);
+      transition: background 0.2s, color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .copy-btn:hover { background: rgba(255,255,255,0.12); color: white; }
+    .copy-btn.copied { color: #6dd5b0; border-color: rgba(109,213,176,0.3); }
+
+    pre {
+      padding: 1.5rem 1.25rem;
+      overflow-x: auto;
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      line-height: 1.75;
+      color: #c9d1d9;
+      tab-size: 2;
+    }
+
+    .tok-kw  { color: #ff7b72; }
+    .tok-fn  { color: #d2a8ff; }
+    .tok-str { color: #a5d6ff; }
+    .tok-cmt { color: #6e7681; font-style: italic; }
+    .tok-num { color: #f2cc60; }
+    .tok-cls { color: #ffa657; }
+    .tok-attr{ color: #79c0ff; }
+    .tok-var { color: #e6edf3; }
+
+    .code-lines { counter-reset: line; }
+    .code-line { display: flex; }
+    .code-line::before {
+      counter-increment: line;
+      content: counter(line);
+      display: inline-block;
+      width: 2.5rem;
+      text-align: right;
+      margin-right: 1.25rem;
+      color: #3d444d;
+      flex-shrink: 0;
+      user-select: none;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .projects-grid { grid-template-columns: 1fr 1fr; }
+      .overview-panel { grid-template-columns: 1fr; }
+      .edu-card { grid-template-columns: auto 1fr; }
+      .edu-date { grid-column: 2; }
+    }
+
+    @media (max-width: 700px) {
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .nav-links { display: none; }
+      .nav-resume span { display: none; }
+      #home { padding-left: 5vw; padding-right: 5vw; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .edu-card { grid-template-columns: 1fr; }
+      .edu-date { text-align: left; grid-column: 1; }
+      .modal-header-left { gap: 0.75rem; }
+      .modal-github-link span { display: none; }
+      .hero-meta { gap: 1.25rem; flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#home">M<span>.</span>Musse</a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a class="nav-resume" href="#contact">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span>Resume</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="home">
+    <div class="hero-bg-orb hero-bg-orb-1"></div>
+    <div class="hero-bg-orb hero-bg-orb-2"></div>
+    <div class="hero-inner">
+      <div class="hero-badge">
+        <div class="hero-badge-dot"></div>
+        Open to opportunities · Class of 2026
+      </div>
+      <h1 class="hero-name">
+        Mahamed<br>
+        <span class="hero-name-italic">Musse.</span>
+      </h1>
+      <p class="hero-sub">Software engineer & full-stack developer passionate about building thoughtful digital products and data-driven systems.</p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn-primary">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          View My Work
+        </a>
+        <a href="#contact" class="btn-outline">
+          Get in Touch
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="hero-meta">
+        <div class="hero-stat">
+          <span class="hero-stat-num">3+</span>
+          <span class="hero-stat-label">Years Experience</span>
+        </div>
+        <div class="hero-meta-divider"></div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">6</span>
+          <span class="hero-stat-label">Projects Built</span>
+        </div>
+        <div class="hero-meta-divider"></div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">10+</span>
+          <span class="hero-stat-label">Technologies</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">01 / About</span>
+      <h2 class="section-title">A little about me</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>I'm a <strong>Computer Science student at Rutgers University</strong> (graduating 2026) with hands-on experience in software development, IT operations, and data analytics.</p>
+        <p>My professional background spans enterprise FinOps at <strong>ADP</strong>, IT infrastructure at <strong>Topgolf Callaway</strong>, and a range of full-stack projects — from React/Node.js apps to ASP.NET deployments on Azure.</p>
+        <p>Outside of tech, I'm involved in my local community at the <strong>Islamic Society of Central Jersey</strong>, and I care about building products that actually make people's lives easier.</p>
+        <p>I'm currently seeking <strong>software engineering and full-stack development roles</strong> where I can grow and contribute meaningfully from day one.</p>
+      </div>
+      <div class="skills-stack reveal">
+        <div class="skill-group">
+          <div class="skill-group-header">
+            <div class="skill-group-icon">{ }</div>
+            <h4>Languages</h4>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag">Java</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">PHP</span>
+            <span class="skill-tag">HTML/CSS</span>
+            <span class="skill-tag">C#</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-header">
+            <div class="skill-group-icon">⚙</div>
+            <h4>Frameworks & Tools</h4>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag">React</span>
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">Express</span>
+            <span class="skill-tag">ASP.NET</span>
+            <span class="skill-tag">MySQL</span>
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">Power BI</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-header">
+            <div class="skill-group-icon">☁</div>
+            <h4>Cloud & Platforms</h4>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag">AWS</span>
+            <span class="skill-tag">Azure</span>
+            <span class="skill-tag">GCP</span>
+            <span class="skill-tag">Vercel</span>
+            <span class="skill-tag">XAMPP</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">02 / Education</span>
+      <h2 class="section-title">Academic background</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="edu-card reveal">
+      <div class="edu-logo">RU</div>
+      <div class="edu-info">
+        <h3>Rutgers University – New Brunswick</h3>
+        <p>Bachelor of Science in Computer Science · School of Arts and Sciences</p>
+        <div class="edu-tags">
+          <span class="edu-tag">Data Structures</span>
+          <span class="edu-tag">Algorithms</span>
+          <span class="edu-tag">Systems Programming</span>
+          <span class="edu-tag">Web Programming</span>
+          <span class="edu-tag">Database Management</span>
+          <span class="edu-tag">Computer Architecture</span>
+        </div>
+      </div>
+      <div class="edu-date">
+        <div class="edu-date-pill">Expected May 2026</div>
+        <span class="edu-gpa">New Brunswick, NJ</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">03 / Projects</span>
+      <h2 class="section-title">Things I've built</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="projects-grid">
+
+      <div class="project-card reveal" onclick="openModal('racetrack')">
+        <div class="project-card-accent"></div>
+        <div class="project-icon">🏎</div>
+        <h3>Racetrack Lap Time Tracker</h3>
+        <p>Full-stack app for logging and comparing racing lap times. JWT auth, CRUD operations, personal bests, and date filtering.</p>
+        <div class="project-tags">
+          <span class="project-tag">React</span>
+          <span class="project-tag">Node.js</span>
+          <span class="project-tag">MySQL</span>
+          <span class="project-tag">REST API</span>
+        </div>
+        <div class="project-footer">
+          <div class="card-cta">
+            View Details
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+          <a class="card-github" href="https://github.com/mahamedmusse" target="_blank" onclick="event.stopPropagation()">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+
+      <div class="project-card reveal" onclick="openModal('drake')">
+        <div class="project-card-accent"></div>
+        <div class="project-icon">🎵</div>
+        <h3>Drake Music Library</h3>
+        <p>Genius-inspired music database. Navigate songs → albums → details with optimized SQL JOINs and a clean React interface.</p>
+        <div class="project-tags">
+          <span class="project-tag">React</span>
+          <span class="project-tag">MySQL</span>
+          <span class="project-tag">SQL</span>
+          <span class="project-tag">Vercel</span>
+        </div>
+        <div class="project-footer">
+          <div class="card-cta">
+            View Details
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+          <a class="card-github" href="https://github.com/mahamedmusse" target="_blank" onclick="event.stopPropagation()">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+
+      <div class="project-card reveal" onclick="openModal('guestbook')">
+        <div class="project-card-accent"></div>
+        <div class="project-icon">📋</div>
+        <h3>GuestBook Web App</h3>
+        <p>Database-driven ASP.NET GuestBook deployed to Azure using Visual Studio, LINQ, and SQL with full cloud integration.</p>
+        <div class="project-tags">
+          <span class="project-tag">ASP.NET</span>
+          <span class="project-tag">Azure</span>
+          <span class="project-tag">LINQ</span>
+          <span class="project-tag">SQL</span>
+        </div>
+        <div class="project-footer">
+          <div class="card-cta">
+            View Details
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+          <a class="card-github" href="https://github.com/mahamedmusse" target="_blank" onclick="event.stopPropagation()">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+
+      <div class="project-card reveal" onclick="openModal('quran')">
+        <div class="project-card-accent"></div>
+        <div class="project-icon">☪</div>
+        <h3>Quran Learning Website</h3>
+        <p>Progress-tracking platform for Quran study with user login, Surah tracking, and SQL-backed persistence.</p>
+        <div class="project-tags">
+          <span class="project-tag">PHP</span>
+          <span class="project-tag">MySQL</span>
+          <span class="project-tag">HTML/CSS</span>
+        </div>
+        <div class="project-footer">
+          <div class="card-cta">
+            View Details
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+          <a class="card-github" href="https://github.com/mahamedmusse" target="_blank" onclick="event.stopPropagation()">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+
+      <div class="project-card reveal" onclick="openModal('weight')">
+        <div class="project-card-accent"></div>
+        <div class="project-icon">⚖</div>
+        <h3>Weight Management App</h3>
+        <p>iOS-inspired web app for tracking weight goals and progress with a clean UI and database integration.</p>
+        <div class="project-tags">
+          <span class="project-tag">JavaScript</span>
+          <span class="project-tag">SQL</span>
+          <span class="project-tag">HTML/CSS</span>
+        </div>
+        <div class="project-footer">
+          <div class="card-cta">
+            View Details
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+          <a class="card-github" href="https://github.com/mahamedmusse" target="_blank" onclick="event.stopPropagation()">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+
+      <div class="project-card reveal" onclick="openModal('flight')">
+        <div class="project-card-accent"></div>
+        <div class="project-icon">✈</div>
+        <h3>Flight Trip Manager</h3>
+        <p>Web app that processes and organizes flight data from text files using a Java backend and HTML frontend.</p>
+        <div class="project-tags">
+          <span class="project-tag">Java</span>
+          <span class="project-tag">HTML</span>
+          <span class="project-tag">File I/O</span>
+        </div>
+        <div class="project-footer">
+          <div class="card-cta">
+            View Details
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+          <a class="card-github" href="https://github.com/mahamedmusse" target="_blank" onclick="event.stopPropagation()">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">04 / Experience</span>
+      <h2 class="section-title">Where I've worked</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="timeline">
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">June 2024 – August 2024</div>
+        <div class="timeline-role">FinanceTech & Data Analytics Intern</div>
+        <div class="timeline-company">ADP — Global Enterprise Technology (GETS) · Roseland, NJ</div>
+        <ul class="timeline-bullets">
+          <li>Tracked IT and cloud expenses across AWS, Azure, GCP, and Oracle Cloud using Apptio and IBM TRIRIGA</li>
+          <li>Identified cost-saving opportunities through hardware inventory reconciliation and cross-platform data analysis</li>
+          <li>Built Power BI and Excel reports to surface usage trends and support vendor contract renewals</li>
+          <li>Assisted with AWS server migration planning and monitored software usage across departments</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">June 2023 – March 2026</div>
+        <div class="timeline-role">IT Technician</div>
+        <div class="timeline-company">Topgolf Callaway — Edison, NJ</div>
+        <ul class="timeline-bullets">
+          <li>Supported hardware and software systems in a high-traffic event and entertainment environment</li>
+          <li>Diagnosed and resolved technical issues on-site under time pressure with minimal downtime</li>
+          <li>Collaborated cross-functionally with staff to ensure smooth technology operations</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">September 2021 – May 2023</div>
+        <div class="timeline-role">Team Member</div>
+        <div class="timeline-company">Target</div>
+        <ul class="timeline-bullets">
+          <li>Delivered customer-facing service in a high-volume retail environment</li>
+          <li>Managed inventory and supported day-to-day store operations</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-header reveal" style="justify-content:center;text-align:center;flex-direction:column;gap:0.5rem;">
+      <span class="section-eyebrow">05 / Contact</span>
+      <h2 class="section-title">Let's connect</h2>
+    </div>
+    <div class="contact-inner reveal">
+      <p>I'm actively looking for software engineering and full-stack development opportunities graduating in May 2026. If you'd like to work together or just want to say hello — my inbox is open.</p>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:mahamedmusse004@gmail.com">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          mahamedmusse004@gmail.com
+        </a>
+        <a class="contact-link" href="https://linkedin.com/in/mahamed-musse-a3653a276/" target="_blank">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a class="contact-link" href="https://github.com/mahamedmusse" target="_blank">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+          GitHub
+        </a>
+        <a class="contact-link" href="tel:7327836383">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.76a16 16 0 0 0 6.33 6.33l.94-.94a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          732-783-6383
+        </a>
+      </div>
+      <a href="#" class="btn-primary" style="display:inline-flex;gap:0.5rem;" onclick="alert('Please link your actual resume PDF here.')">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Resume
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Mahamed Musse</span>
+    <span>Monmouth Junction, NJ · CS @ Rutgers 2026</span>
+  </footer>
+
+  <!-- ══════════════════════════════════════
+       MODAL
+  ══════════════════════════════════════ -->
+  <div class="modal-overlay" id="modal-overlay" onclick="handleOverlayClick(event)">
+    <div class="modal" id="modal">
+      <div class="modal-header">
+        <div class="modal-header-left">
+          <div class="modal-icon" id="modal-icon">📁</div>
+          <div class="modal-title-group">
+            <div class="modal-title" id="modal-title">Project</div>
+            <div class="modal-subtitle" id="modal-subtitle">subtitle</div>
+          </div>
+        </div>
+        <div class="modal-header-right">
+          <a class="modal-github-link" id="modal-github-link" href="https://github.com/mahamedmusse" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+            <span>View on GitHub</span>
+          </a>
+          <button class="modal-close" onclick="closeModal()" aria-label="Close">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="modal-tabs">
+        <button class="modal-tab active" id="tab-overview" onclick="switchTab('overview')">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Overview
+        </button>
+        <button class="modal-tab" id="tab-preview" onclick="switchTab('preview')">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="m8 21 4-4 4 4M12 17v4"/></svg>
+          Live Preview
+        </button>
+        <button class="modal-tab" id="tab-code" onclick="switchTab('code')">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          Code
+        </button>
+      </div>
+      <div class="modal-body" id="modal-body"></div>
+    </div>
+  </div>
+
+  <script>
+  const GITHUB = 'https://github.com/mahamedmusse';
+
+  const projects = {
+    racetrack: {
+      title: 'Racetrack Lap Time Tracker',
+      icon: '🏎',
+      subtitle: 'React · Node.js · MySQL · REST API',
+      github: GITHUB + '/racetrack-lap-tracker',
+      description: 'A full-stack web application that lets drivers log, view, and compare lap times across different racetracks. It features JWT-based user authentication, full CRUD operations, personal best highlights, and date-range filtering — all backed by a RESTful Node.js/Express API and a MySQL database.',
+      features: ['JWT user authentication','CRUD lap time records','Personal best tracking','Date range filtering','REST API with Express','MySQL persistent storage','Responsive React UI','Performance charts'],
+      stack: ['React','Node.js','Express','MySQL','JWT','REST API','CSS Modules'],
+      previewHTML: `<!DOCTYPE html><html><head><style>*{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,sans-serif}body{background:#0f1117;color:#e6edf3;min-height:100vh}nav{background:#161b22;border-bottom:1px solid #30363d;padding:12px 24px;display:flex;align-items:center;justify-content:space-between}.logo{font-weight:700;font-size:1.1rem;color:#58a6ff}.badge{background:#238636;color:white;padding:4px 12px;border-radius:20px;font-size:.75rem;font-weight:600}.container{padding:24px;max-width:900px;margin:0 auto}h1{font-size:1.5rem;margin-bottom:4px}.sub{color:#8b949e;font-size:.875rem;margin-bottom:24px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px}.stat{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:16px}.stat-label{font-size:.7rem;color:#8b949e;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}.stat-val{font-size:1.6rem;font-weight:700;color:#f0f6fc}.stat-val.green{color:#3fb950}table{width:100%;border-collapse:collapse;background:#161b22;border:1px solid #30363d;border-radius:8px;overflow:hidden}th{background:#21262d;padding:10px 14px;text-align:left;font-size:.75rem;color:#8b949e;text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid #30363d}td{padding:10px 14px;font-size:.85rem;border-bottom:1px solid #21262d}tr:last-child td{border-bottom:none}.pb{background:#1f3d1f;color:#3fb950;padding:2px 6px;border-radius:3px;font-size:.7rem;font-weight:700}.btn{background:#238636;color:white;border:none;padding:8px 16px;border-radius:6px;font-size:.8rem;font-weight:600;cursor:pointer;float:right;margin-bottom:12px}</style></head><body><nav><span class="logo">🏎 LapTrack</span><span class="badge">● LIVE</span></nav><div class="container"><h1>My Lap Times</h1><p class="sub">Logged in as max_racer · 2024 Season</p><div class="stats"><div class="stat"><div class="stat-label">Total Sessions</div><div class="stat-val">24</div></div><div class="stat"><div class="stat-label">Best Lap</div><div class="stat-val green">1:32.4</div></div><div class="stat"><div class="stat-label">Avg Lap</div><div class="stat-val">1:38.7</div></div><div class="stat"><div class="stat-label">Tracks</div><div class="stat-val">5</div></div></div><button class="btn">+ Log New Lap</button><table><tr><th>Date</th><th>Track</th><th>Lap Time</th><th>Car</th><th>Badge</th></tr><tr><td>Mar 10</td><td>Monticello</td><td>1:32.4</td><td>BMW M3</td><td><span class="pb">PB</span></td></tr><tr><td>Mar 8</td><td>Monticello</td><td>1:34.1</td><td>BMW M3</td><td></td></tr><tr><td>Feb 28</td><td>Lime Rock</td><td>0:58.7</td><td>Miata</td><td><span class="pb">PB</span></td></tr><tr><td>Feb 20</td><td>Watkins Glen</td><td>2:14.3</td><td>BMW M3</td><td></td></tr><tr><td>Feb 14</td><td>Summit Point</td><td>1:47.2</td><td>Miata</td><td></td></tr></table></div></body></html>`,
+      code: `<span class="tok-cmt">// server/routes/laps.js — Express REST API</span>\n<span class="tok-kw">const</span> <span class="tok-var">express</span> = <span class="tok-fn">require</span>(<span class="tok-str">'express'</span>);\n<span class="tok-kw">const</span> <span class="tok-var">router</span>  = <span class="tok-var">express</span>.<span class="tok-fn">Router</span>();\n<span class="tok-kw">const</span> <span class="tok-var">db</span>      = <span class="tok-fn">require</span>(<span class="tok-str">'../db'</span>);\n<span class="tok-kw">const</span> <span class="tok-var">auth</span>    = <span class="tok-fn">require</span>(<span class="tok-str">'../middleware/auth'</span>);\n\n<span class="tok-cmt">// GET all laps for authenticated user</span>\n<span class="tok-var">router</span>.<span class="tok-fn">get</span>(<span class="tok-str">'/'</span>, <span class="tok-var">auth</span>, <span class="tok-kw">async</span> (<span class="tok-var">req</span>, <span class="tok-var">res</span>) => {\n  <span class="tok-kw">const</span> { <span class="tok-var">from</span>, <span class="tok-var">to</span>, <span class="tok-var">track</span> } = <span class="tok-var">req</span>.<span class="tok-var">query</span>;\n  <span class="tok-kw">let</span> <span class="tok-var">sql</span> = <span class="tok-str">'SELECT * FROM laps WHERE user_id = ?'</span>;\n  <span class="tok-kw">const</span> <span class="tok-var">params</span> = [<span class="tok-var">req</span>.<span class="tok-var">user</span>.<span class="tok-var">id</span>];\n\n  <span class="tok-kw">if</span> (<span class="tok-var">from</span>)  { <span class="tok-var">sql</span> += <span class="tok-str">' AND lap_date >= ?'</span>; <span class="tok-var">params</span>.<span class="tok-fn">push</span>(<span class="tok-var">from</span>); }\n  <span class="tok-kw">if</span> (<span class="tok-var">to</span>)    { <span class="tok-var">sql</span> += <span class="tok-str">' AND lap_date <= ?'</span>; <span class="tok-var">params</span>.<span class="tok-fn">push</span>(<span class="tok-var">to</span>);   }\n  <span class="tok-kw">if</span> (<span class="tok-var">track</span>) { <span class="tok-var">sql</span> += <span class="tok-str">' AND track = ?'</span>;    <span class="tok-var">params</span>.<span class="tok-fn">push</span>(<span class="tok-var">track</span>); }\n  <span class="tok-var">sql</span> += <span class="tok-str">' ORDER BY lap_time ASC'</span>;\n\n  <span class="tok-kw">const</span> [<span class="tok-var">rows</span>] = <span class="tok-kw">await</span> <span class="tok-var">db</span>.<span class="tok-fn">query</span>(<span class="tok-var">sql</span>, <span class="tok-var">params</span>);\n  <span class="tok-var">res</span>.<span class="tok-fn">json</span>(<span class="tok-var">rows</span>);\n});\n\n<span class="tok-cmt">// POST new lap record</span>\n<span class="tok-var">router</span>.<span class="tok-fn">post</span>(<span class="tok-str">'/'</span>, <span class="tok-var">auth</span>, <span class="tok-kw">async</span> (<span class="tok-var">req</span>, <span class="tok-var">res</span>) => {\n  <span class="tok-kw">const</span> { <span class="tok-var">track</span>, <span class="tok-var">lap_time</span>, <span class="tok-var">car</span>, <span class="tok-var">lap_date</span> } = <span class="tok-var">req</span>.<span class="tok-var">body</span>;\n  <span class="tok-kw">const</span> [<span class="tok-var">result</span>] = <span class="tok-kw">await</span> <span class="tok-var">db</span>.<span class="tok-fn">query</span>(\n    <span class="tok-str">'INSERT INTO laps (user_id,track,lap_time,car,lap_date) VALUES (?,?,?,?,?)'</span>,\n    [<span class="tok-var">req</span>.<span class="tok-var">user</span>.<span class="tok-var">id</span>, <span class="tok-var">track</span>, <span class="tok-var">lap_time</span>, <span class="tok-var">car</span>, <span class="tok-var">lap_date</span>]\n  );\n  <span class="tok-var">res</span>.<span class="tok-fn">json</span>({ <span class="tok-var">id</span>: <span class="tok-var">result</span>.<span class="tok-var">insertId</span>, <span class="tok-var">track</span>, <span class="tok-var">lap_time</span>, <span class="tok-var">car</span>, <span class="tok-var">lap_date</span> });\n});\n\n<span class="tok-kw">module</span>.<span class="tok-var">exports</span> = <span class="tok-var">router</span>;`,
+      codeFile: 'routes/laps.js', codeLang: 'JS',
+    },
+    drake: {
+      title: 'Drake Music Library',
+      icon: '🎵',
+      subtitle: 'React · MySQL · SQL · Vercel',
+      github: GITHUB + '/drake-music-library',
+      description: "A Genius-inspired music database for exploring Drake's discography. Users can search songs and navigate hierarchically from song → album → full album details. Built with a React frontend deployed on Vercel and a MySQL database with optimized JOIN queries.",
+      features: ['Full-text song search','Album → track hierarchy','SQL JOIN queries','Deployed on Vercel','React Router navigation','Responsive card layout','Album art display','Lyrics preview'],
+      stack: ['React','React Router','MySQL','Vercel','Node.js','Express'],
+      previewHTML: `<!DOCTYPE html><html><head><style>*{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,sans-serif}body{background:#111;color:#f5f5f5;min-height:100vh}nav{background:#000;padding:14px 24px;display:flex;align-items:center;gap:16px;border-bottom:1px solid #222}.logo{font-weight:900;font-size:1.2rem;color:#b5973f;letter-spacing:-.02em}input{flex:1;max-width:360px;background:#1a1a1a;border:1px solid #333;color:white;padding:8px 14px;border-radius:20px;font-size:.85rem;outline:none}input::placeholder{color:#555}.container{padding:24px;max-width:900px;margin:0 auto}h2{font-size:1rem;color:#888;margin-bottom:16px;text-transform:uppercase;letter-spacing:.1em}.albums{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:32px}.album{cursor:pointer;transition:transform .2s}.album:hover{transform:scale(1.03)}.art{border-radius:6px;aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:2rem;margin-bottom:8px}.alb-name{font-size:.82rem;font-weight:700;margin-bottom:2px}.alb-year{font-size:.72rem;color:#888}.songs{background:#1a1a1a;border-radius:10px;overflow:hidden}.song-row{display:flex;align-items:center;gap:12px;padding:10px 16px;border-bottom:1px solid #222;cursor:pointer;transition:background .15s}.song-row:hover{background:#252525}.song-row:last-child{border-bottom:none}.num{color:#555;width:18px;font-size:.8rem;text-align:right}.song-info{flex:1}.s-name{font-size:.88rem;font-weight:500}.s-album{font-size:.74rem;color:#888}.dur{color:#555;font-size:.78rem}</style></head><body><nav><span class="logo">🎵 Certified Lover Boy</span><input placeholder="Search songs, albums..."></nav><div class="container"><h2>Albums</h2><div class="albums"><div class="album"><div class="art" style="background:#1a1a2e">👶</div><div class="alb-name">Take Care</div><div class="alb-year">2011</div></div><div class="album"><div class="art" style="background:#1a2e1a">🦉</div><div class="alb-name">Nothing Was the Same</div><div class="alb-year">2013</div></div><div class="album"><div class="art" style="background:#2e1a1a">❤️</div><div class="alb-name">Views</div><div class="alb-year">2016</div></div><div class="album"><div class="art" style="background:#1a1a1a">🌹</div><div class="alb-name">Certified Lover Boy</div><div class="alb-year">2021</div></div></div><h2>Top Songs</h2><div class="songs"><div class="song-row"><span class="num">1</span><div class="song-info"><div class="s-name">God's Plan</div><div class="s-album">Scary Hours</div></div><span class="dur">3:19</span></div><div class="song-row"><span class="num">2</span><div class="song-info"><div class="s-name">Hotline Bling</div><div class="s-album">Views</div></div><span class="dur">4:27</span></div><div class="song-row"><span class="num">3</span><div class="song-info"><div class="s-name">One Dance</div><div class="s-album">Views</div></div><span class="dur">2:54</span></div><div class="song-row"><span class="num">4</span><div class="song-info"><div class="s-name">Passionfruit</div><div class="s-album">More Life</div></div><span class="dur">4:59</span></div></div></div></body></html>`,
+      code: `<span class="tok-cmt">-- Database schema & key query</span>\n<span class="tok-kw">CREATE TABLE</span> <span class="tok-cls">albums</span> (\n  <span class="tok-var">id</span>           <span class="tok-fn">INT</span> <span class="tok-kw">PRIMARY KEY</span> <span class="tok-fn">AUTO_INCREMENT</span>,\n  <span class="tok-var">title</span>        <span class="tok-fn">VARCHAR</span>(<span class="tok-var">255</span>) <span class="tok-kw">NOT NULL</span>,\n  <span class="tok-var">release_year</span> <span class="tok-fn">YEAR</span>,\n  <span class="tok-var">cover_url</span>    <span class="tok-fn">TEXT</span>\n);\n\n<span class="tok-kw">CREATE TABLE</span> <span class="tok-cls">songs</span> (\n  <span class="tok-var">id</span>       <span class="tok-fn">INT</span> <span class="tok-kw">PRIMARY KEY</span> <span class="tok-fn">AUTO_INCREMENT</span>,\n  <span class="tok-var">album_id</span> <span class="tok-fn">INT</span> <span class="tok-kw">REFERENCES</span> <span class="tok-cls">albums</span>(<span class="tok-var">id</span>),\n  <span class="tok-var">title</span>    <span class="tok-fn">VARCHAR</span>(<span class="tok-var">255</span>),\n  <span class="tok-var">duration</span> <span class="tok-fn">VARCHAR</span>(<span class="tok-var">10</span>),\n  <span class="tok-var">track_num</span> <span class="tok-fn">INT</span>\n);\n\n<span class="tok-cmt">-- Search songs + albums in one query</span>\n<span class="tok-kw">SELECT</span> <span class="tok-var">s</span>.<span class="tok-var">id</span>, <span class="tok-var">s</span>.<span class="tok-var">title</span> <span class="tok-kw">AS</span> <span class="tok-var">song_title</span>,\n       <span class="tok-var">a</span>.<span class="tok-var">title</span> <span class="tok-kw">AS</span> <span class="tok-var">album_title</span>, <span class="tok-var">a</span>.<span class="tok-var">release_year</span>\n<span class="tok-kw">FROM</span>   <span class="tok-cls">songs</span> <span class="tok-var">s</span>\n<span class="tok-kw">JOIN</span>   <span class="tok-cls">albums</span> <span class="tok-var">a</span> <span class="tok-kw">ON</span> <span class="tok-var">s</span>.<span class="tok-var">album_id</span> = <span class="tok-var">a</span>.<span class="tok-var">id</span>\n<span class="tok-kw">WHERE</span>  <span class="tok-var">s</span>.<span class="tok-var">title</span> <span class="tok-kw">LIKE</span> <span class="tok-str">CONCAT('%', ?, '%')</span>\n<span class="tok-kw">ORDER BY</span> <span class="tok-var">a</span>.<span class="tok-var">release_year</span>, <span class="tok-var">s</span>.<span class="tok-var">track_num</span>;`,
+      codeFile: 'schema.sql', codeLang: 'SQL',
+    },
+    guestbook: {
+      title: 'GuestBook Web App',
+      icon: '📋',
+      subtitle: 'ASP.NET · Azure · LINQ · C#',
+      github: GITHUB + '/guestbook-azure',
+      description: 'A cloud-hosted guestbook web application built with ASP.NET and deployed to Microsoft Azure. Users can submit messages stored in a SQL database and queried with LINQ. Demonstrates full-stack .NET development with cloud deployment via Visual Studio.',
+      features: ['ASP.NET Web Forms','LINQ-to-SQL queries','Azure SQL Database','Azure App Service deploy','C# backend logic','Form validation','Message listing & search','Visual Studio integration'],
+      stack: ['ASP.NET','C#','LINQ','Azure SQL','Azure App Service','Visual Studio'],
+      previewHTML: `<!DOCTYPE html><html><head><style>*{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',system-ui,sans-serif}body{background:#f3f2f1;min-height:100vh}header{background:#0078d4;color:white;padding:12px 24px;display:flex;align-items:center;gap:10px}.ms-logo{font-weight:700;font-size:.9rem;letter-spacing:.02em}h1{font-size:1rem;font-weight:400;opacity:.85}.container{max-width:760px;margin:24px auto;padding:0 16px}.card{background:white;border-radius:4px;box-shadow:0 1.6px 3.6px rgba(0,0,0,.13);padding:24px;margin-bottom:16px}h2{font-size:1rem;font-weight:600;color:#323130;margin-bottom:16px}label{display:block;font-size:.8rem;font-weight:600;color:#323130;margin-bottom:4px;margin-top:12px}label:first-of-type{margin-top:0}input,textarea{width:100%;border:1px solid #8a8886;border-radius:2px;padding:6px 8px;font-size:.875rem;font-family:inherit;color:#323130}textarea{height:80px;resize:vertical}button{margin-top:16px;background:#0078d4;color:white;border:none;padding:8px 20px;border-radius:2px;font-size:.875rem;font-weight:600;cursor:pointer}.entries{display:flex;flex-direction:column;gap:10px}.entry{border-left:3px solid #0078d4;padding:10px 14px;background:#f0f7ff;border-radius:0 4px 4px 0}.entry-name{font-size:.82rem;font-weight:700;color:#0078d4}.entry-msg{font-size:.85rem;color:#323130;margin-top:2px}.entry-date{font-size:.72rem;color:#8a8886;margin-top:4px}</style></head><body><header><span class="ms-logo">⊞ Azure</span><h1>GuestBook — Hosted on Azure App Service</h1></header><div class="container"><div class="card"><h2>Leave a Message</h2><label>Your Name</label><input value="John Smith" readonly><label>Email</label><input value="john@example.com" readonly><label>Message</label><textarea readonly>Fantastic application! Really clean UI and fast response times.</textarea><button>Submit</button></div><div class="card"><h2>Recent Entries (3)</h2><div class="entries"><div class="entry"><div class="entry-name">Alice M.</div><div class="entry-msg">Really well-built app, LINQ queries are blazing fast!</div><div class="entry-date">March 10, 2026 · 2:14 PM</div></div><div class="entry"><div class="entry-name">Bob K.</div><div class="entry-msg">Love the Azure integration. Deployed seamlessly.</div><div class="entry-date">March 8, 2026 · 11:03 AM</div></div><div class="entry"><div class="entry-name">Sara T.</div><div class="entry-msg">Clean and simple. Great use of ASP.NET forms.</div><div class="entry-date">March 5, 2026 · 9:45 AM</div></div></div></div></div></body></html>`,
+      code: `<span class="tok-cmt">// GuestbookService.cs — LINQ data access</span>\n<span class="tok-kw">using</span> <span class="tok-cls">System.Linq</span>;\n\n<span class="tok-kw">public class</span> <span class="tok-cls">GuestbookService</span>\n{\n  <span class="tok-kw">private readonly</span> <span class="tok-cls">GuestbookContext</span> <span class="tok-var">_db</span>;\n\n  <span class="tok-kw">public</span> <span class="tok-fn">GuestbookService</span>(<span class="tok-cls">GuestbookContext</span> <span class="tok-var">db</span>) => <span class="tok-var">_db</span> = <span class="tok-var">db</span>;\n\n  <span class="tok-kw">public</span> <span class="tok-cls">IEnumerable</span>&lt;<span class="tok-cls">GuestbookEntry</span>&gt; <span class="tok-fn">GetEntries</span>()\n    => <span class="tok-var">_db</span>.<span class="tok-cls">Entries</span>\n         .<span class="tok-fn">OrderByDescending</span>(<span class="tok-var">e</span> => <span class="tok-var">e</span>.<span class="tok-cls">SubmittedAt</span>)\n         .<span class="tok-fn">ToList</span>();\n\n  <span class="tok-kw">public void</span> <span class="tok-fn">AddEntry</span>(<span class="tok-cls">string</span> <span class="tok-var">name</span>, <span class="tok-cls">string</span> <span class="tok-var">email</span>, <span class="tok-cls">string</span> <span class="tok-var">message</span>)\n  {\n    <span class="tok-var">_db</span>.<span class="tok-cls">Entries</span>.<span class="tok-fn">Add</span>(<span class="tok-kw">new</span> <span class="tok-cls">GuestbookEntry</span> {\n      <span class="tok-cls">Name</span>        = <span class="tok-var">name</span>,\n      <span class="tok-cls">Email</span>       = <span class="tok-var">email</span>,\n      <span class="tok-cls">Message</span>     = <span class="tok-var">message</span>,\n      <span class="tok-cls">SubmittedAt</span> = <span class="tok-cls">DateTime</span>.<span class="tok-cls">UtcNow</span>\n    });\n    <span class="tok-var">_db</span>.<span class="tok-fn">SaveChanges</span>();\n  }\n}`,
+      codeFile: 'GuestbookService.cs', codeLang: 'C#',
+    },
+    quran: {
+      title: 'Quran Learning Website',
+      icon: '☪',
+      subtitle: 'PHP · MySQL · HTML/CSS · XAMPP',
+      github: GITHUB + '/quran-tracker',
+      description: 'A progress-tracking platform for Quran study built on the LAMP stack. Users create accounts, log completed Surahs, and track overall reading progress. Sessions and user data are persisted in MySQL with PHP handling authentication and business logic.',
+      features: ['PHP session authentication','Surah completion tracking','Progress bar visualization','MySQL user storage','Registration & login','Dashboard overview','114 Surah catalog','Responsive design'],
+      stack: ['PHP','MySQL','HTML5','CSS3','XAMPP','Apache'],
+      previewHTML: `<!DOCTYPE html><html><head><style>*{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,sans-serif}body{background:linear-gradient(135deg,#0d1b2a 0%,#1b2f45 100%);min-height:100vh;color:#e8e0d0}nav{background:rgba(255,255,255,.05);backdrop-filter:blur(8px);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.08)}.logo{font-size:1.1rem;font-weight:700;color:#c9a84c}.user{font-size:.8rem;color:#8a9bb0}.container{padding:24px;max-width:780px;margin:0 auto}.welcome{font-size:1.3rem;font-weight:700;margin-bottom:4px;color:#f0e6d0}.sub{font-size:.85rem;color:#8a9bb0;margin-bottom:24px}.progress-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:20px;margin-bottom:20px}.prog-label{display:flex;justify-content:space-between;font-size:.82rem;margin-bottom:8px;color:#c9a84c;font-weight:600}.prog-bar{background:rgba(255,255,255,.08);border-radius:20px;height:10px;overflow:hidden}.prog-fill{background:linear-gradient(90deg,#c9a84c,#e8c97a);height:100%;border-radius:20px;width:42%}.surahs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.surah{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:12px;cursor:pointer}.surah.done{border-color:rgba(201,168,76,.4);background:rgba(201,168,76,.08)}.s-num{font-size:.7rem;color:#c9a84c;font-weight:700;margin-bottom:2px}.s-name{font-size:.85rem;font-weight:600}.s-verses{font-size:.72rem;color:#8a9bb0}.check{float:right;color:#c9a84c;font-size:.9rem}</style></head><body><nav><span class="logo">☪ Quran Tracker</span><span class="user">👤 max_musse</span></nav><div class="container"><div class="welcome">Assalamu Alaikum, Max</div><div class="sub">Your Quran reading journey</div><div class="progress-card"><div class="prog-label"><span>Overall Progress</span><span>48 / 114 Surahs</span></div><div class="prog-bar"><div class="prog-fill"></div></div></div><div class="surahs"><div class="surah done"><div class="s-num">1 <span class="check">✓</span></div><div class="s-name">Al-Fatiha</div><div class="s-verses">7 verses</div></div><div class="surah done"><div class="s-num">2 <span class="check">✓</span></div><div class="s-name">Al-Baqara</div><div class="s-verses">286 verses</div></div><div class="surah"><div class="s-num">3</div><div class="s-name">Ali Imran</div><div class="s-verses">200 verses</div></div><div class="surah done"><div class="s-num">4 <span class="check">✓</span></div><div class="s-name">An-Nisa</div><div class="s-verses">176 verses</div></div><div class="surah"><div class="s-num">5</div><div class="s-name">Al-Maida</div><div class="s-verses">120 verses</div></div><div class="surah done"><div class="s-num">112 <span class="check">✓</span></div><div class="s-name">Al-Ikhlas</div><div class="s-verses">4 verses</div></div></div></div></body></html>`,
+      code: `<span class="tok-cmt">&lt;?php // progress.php — track Surah completion</span>\n<span class="tok-fn">session_start</span>();\n<span class="tok-kw">if</span> (!<span class="tok-fn">isset</span>(<span class="tok-var">$_SESSION</span>[<span class="tok-str">'user_id'</span>])) {\n  <span class="tok-fn">header</span>(<span class="tok-str">'Location: login.php'</span>); <span class="tok-fn">exit</span>();\n}\n\n<span class="tok-var">$pdo</span> = <span class="tok-kw">new</span> <span class="tok-cls">PDO</span>(<span class="tok-str">'mysql:host=localhost;dbname=quran_db'</span>, <span class="tok-var">$user</span>, <span class="tok-var">$pass</span>);\n\n<span class="tok-kw">if</span> (<span class="tok-var">$_SERVER</span>[<span class="tok-str">'REQUEST_METHOD'</span>] === <span class="tok-str">'POST'</span>) {\n  <span class="tok-var">$surah_id</span> = (<span class="tok-fn">int</span>) <span class="tok-var">$_POST</span>[<span class="tok-str">'surah_id'</span>];\n  <span class="tok-var">$stmt</span> = <span class="tok-var">$pdo</span>-><span class="tok-fn">prepare</span>(\n    <span class="tok-str">"INSERT IGNORE INTO user_progress\n     (user_id, surah_id, completed_at)\n     VALUES (?, ?, NOW())"</span>\n  );\n  <span class="tok-var">$stmt</span>-><span class="tok-fn">execute</span>([<span class="tok-var">$_SESSION</span>[<span class="tok-str">'user_id'</span>], <span class="tok-var">$surah_id</span>]);\n}\n\n<span class="tok-var">$stmt</span> = <span class="tok-var">$pdo</span>-><span class="tok-fn">prepare</span>(\n  <span class="tok-str">"SELECT s.id, s.name, up.completed_at\n   FROM   surahs s\n   LEFT JOIN user_progress up\n          ON up.surah_id = s.id\n         AND up.user_id  = ?\n   ORDER BY s.id"</span>\n);\n<span class="tok-var">$stmt</span>-><span class="tok-fn">execute</span>([<span class="tok-var">$_SESSION</span>[<span class="tok-str">'user_id'</span>]]);\n<span class="tok-var">$surahs</span> = <span class="tok-var">$stmt</span>-><span class="tok-fn">fetchAll</span>(<span class="tok-cls">PDO</span>::<span class="tok-cls">FETCH_ASSOC</span>);`,
+      codeFile: 'progress.php', codeLang: 'PHP',
+    },
+    weight: {
+      title: 'Weight Management App',
+      icon: '⚖',
+      subtitle: 'JavaScript · SQL · HTML/CSS',
+      github: GITHUB + '/weight-tracker',
+      description: 'An iOS-inspired web application for tracking weight and fitness goals. Users log daily weight entries, set target goals, and view their progress over time. Features a clean card-based UI with smooth transitions and persistent storage via a SQL backend.',
+      features: ['Daily weight logging','Goal setting & tracking','Progress trend line','iOS-inspired UI design','BMI calculation','SQL persistent storage','Streak tracking','Responsive layout'],
+      stack: ['Vanilla JavaScript','HTML5','CSS3','SQL','Chart.js'],
+      previewHTML: `<!DOCTYPE html><html><head><style>*{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,'SF Pro Display',system-ui,sans-serif}body{background:#f2f2f7;min-height:100vh}.status-bar{background:#fff;padding:12px 20px 0;display:flex;justify-content:space-between;font-size:.72rem;color:#8e8e93;padding-bottom:8px}.header{background:#fff;padding:8px 20px 16px;border-bottom:1px solid #e5e5ea}h1{font-size:1.25rem;font-weight:700;color:#000}.container{padding:16px}.card{background:#fff;border-radius:14px;padding:18px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,.08)}.card-title{font-size:.72rem;font-weight:600;color:#8e8e93;text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px}.big-num{font-size:3rem;font-weight:700;color:#000;line-height:1}.unit{font-size:1rem;color:#8e8e93;margin-left:4px}.progress-wrap{margin-top:12px}.progress-label{display:flex;justify-content:space-between;font-size:.78rem;color:#8e8e93;margin-bottom:6px}.bar{background:#e5e5ea;border-radius:10px;height:8px;overflow:hidden}.fill{background:linear-gradient(90deg,#30d158,#34c759);height:100%;width:67%;border-radius:10px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.mini-card{background:#fff;border-radius:14px;padding:16px;box-shadow:0 1px 3px rgba(0,0,0,.08)}.mc-label{font-size:.68rem;font-weight:600;color:#8e8e93;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}.mc-val{font-size:1.5rem;font-weight:700}.mc-val.green{color:#34c759}.mc-val.blue{color:#007aff}.log-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #f2f2f7}.log-row:last-child{border-bottom:none}.log-date{font-size:.82rem;color:#8e8e93}.log-weight{font-size:.95rem;font-weight:600}.log-delta{font-size:.75rem;color:#34c759;font-weight:600}</style></head><body><div class="status-bar"><span>9:41 AM</span><span>⚡ 89%</span></div><div class="header"><h1>Weight Tracker</h1></div><div class="container"><div class="card"><div class="card-title">Current Weight</div><div class="big-num">181<span class="unit">lbs</span></div><div class="progress-wrap"><div class="progress-label"><span>Goal: 170 lbs</span><span>67% there</span></div><div class="bar"><div class="fill"></div></div></div></div><div class="grid2"><div class="mini-card"><div class="mc-label">Lost</div><div class="mc-val green">−12 lbs</div></div><div class="mini-card"><div class="mc-label">Streak</div><div class="mc-val blue">14 days</div></div><div class="mini-card"><div class="mc-label">BMI</div><div class="mc-val">24.6</div></div><div class="mini-card"><div class="mc-label">To Goal</div><div class="mc-val">11 lbs</div></div></div><div class="card" style="margin-top:12px"><div class="card-title">Recent Logs</div><div class="log-row"><span class="log-date">Today</span><span class="log-weight">181 lbs</span><span class="log-delta">−0.8</span></div><div class="log-row"><span class="log-date">Yesterday</span><span class="log-weight">181.8 lbs</span><span class="log-delta">−0.4</span></div><div class="log-row"><span class="log-date">Mar 11</span><span class="log-weight">182.2 lbs</span><span class="log-delta">−0.6</span></div></div></div></body></html>`,
+      code: `<span class="tok-cmt">// app.js — Weight Tracker core logic</span>\n\n<span class="tok-kw">const</span> <span class="tok-cls">API</span> = <span class="tok-str">'/api/weights'</span>;\n\n<span class="tok-kw">async function</span> <span class="tok-fn">fetchEntries</span>() {\n  <span class="tok-kw">const</span> <span class="tok-var">res</span>  = <span class="tok-kw">await</span> <span class="tok-fn">fetch</span>(<span class="tok-cls">API</span>);\n  <span class="tok-kw">const</span> <span class="tok-var">data</span> = <span class="tok-kw">await</span> <span class="tok-var">res</span>.<span class="tok-fn">json</span>();\n  <span class="tok-fn">renderEntries</span>(<span class="tok-var">data</span>);\n  <span class="tok-fn">updateStats</span>(<span class="tok-var">data</span>);\n}\n\n<span class="tok-kw">function</span> <span class="tok-fn">updateStats</span>(<span class="tok-var">entries</span>) {\n  <span class="tok-kw">if</span> (!<span class="tok-var">entries</span>.<span class="tok-var">length</span>) <span class="tok-kw">return</span>;\n  <span class="tok-kw">const</span> <span class="tok-var">latest</span> = <span class="tok-var">entries</span>[<span class="tok-var">0</span>].<span class="tok-var">weight</span>;\n  <span class="tok-kw">const</span> <span class="tok-var">start</span>  = <span class="tok-var">entries</span>[<span class="tok-var">entries</span>.<span class="tok-var">length</span> - <span class="tok-var">1</span>].<span class="tok-var">weight</span>;\n  <span class="tok-kw">const</span> <span class="tok-var">goal</span>   = <span class="tok-fn">parseFloat</span>(<span class="tok-var">localStorage</span>.<span class="tok-fn">getItem</span>(<span class="tok-str">'goal'</span>));\n  <span class="tok-kw">const</span> <span class="tok-var">lost</span>   = (<span class="tok-var">start</span> - <span class="tok-var">latest</span>).<span class="tok-fn">toFixed</span>(<span class="tok-var">1</span>);\n  <span class="tok-kw">const</span> <span class="tok-var">pct</span>    = <span class="tok-cls">Math</span>.<span class="tok-fn">round</span>((<span class="tok-var">lost</span> / (<span class="tok-var">start</span> - <span class="tok-var">goal</span>)) * <span class="tok-var">100</span>);\n\n  <span class="tok-fn">document</span>.<span class="tok-fn">getElementById</span>(<span class="tok-str">'current'</span>).<span class="tok-var">textContent</span> = <span class="tok-var">latest</span>;\n  <span class="tok-fn">document</span>.<span class="tok-fn">getElementById</span>(<span class="tok-str">'lost'</span>).<span class="tok-var">textContent</span>    = <span class="tok-str">\`−\${lost} lbs\`</span>;\n  <span class="tok-fn">document</span>.<span class="tok-fn">getElementById</span>(<span class="tok-str">'progress'</span>).<span class="tok-var">style</span>.<span class="tok-var">width</span> = <span class="tok-var">pct</span> + <span class="tok-str">'%'</span>;\n}\n\n<span class="tok-fn">fetchEntries</span>();`,
+      codeFile: 'app.js', codeLang: 'JS',
+    },
+    flight: {
+      title: 'Flight Trip Manager',
+      icon: '✈',
+      subtitle: 'Java · HTML · File I/O',
+      github: GITHUB + '/flight-trip-manager',
+      description: 'A web application that reads and parses flight data from structured text files, processes it through a Java backend, and presents it through an HTML frontend. Users can view, filter, and organize trips with all data sourced from flat-file storage parsed with Java I/O.',
+      features: ['Java file I/O parsing','Flight data processing','Trip organization','Search & filter','HTML/CSS frontend','Servlet-based backend','Departure/arrival times','Trip summary export'],
+      stack: ['Java','Java Servlets','JSP','HTML5','CSS3','File I/O'],
+      previewHTML: `<!DOCTYPE html><html><head><style>*{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,sans-serif}body{background:#f8fafc;min-height:100vh}header{background:linear-gradient(135deg,#1e3a5f,#2563eb);color:white;padding:18px 24px;display:flex;align-items:center;gap:12px}.logo{font-size:1.3rem}h1{font-size:1.05rem;font-weight:700}.container{max-width:900px;margin:24px auto;padding:0 20px}.filters{background:white;border-radius:10px;padding:16px;box-shadow:0 1px 4px rgba(0,0,0,.08);margin-bottom:16px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}input,select{border:1px solid #e2e8f0;border-radius:6px;padding:7px 12px;font-size:.82rem;color:#374151}.search-btn{background:#2563eb;color:white;border:none;padding:7px 16px;border-radius:6px;font-size:.82rem;font-weight:600;cursor:pointer}.flight-card{background:white;border-radius:10px;padding:0;box-shadow:0 1px 4px rgba(0,0,0,.08);margin-bottom:12px;overflow:hidden}.fc-header{background:#eff6ff;padding:10px 18px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #dbeafe}.fc-route{font-weight:700;font-size:.95rem;color:#1e3a5f}.fc-price{font-weight:700;color:#2563eb}.fc-body{padding:14px 18px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}.fc-field label{font-size:.68rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:2px}.fc-field span{font-size:.88rem;color:#1e293b;font-weight:500}.status{display:inline-block;padding:2px 8px;border-radius:10px;font-size:.7rem;font-weight:700}.on-time{background:#dcfce7;color:#166534}.delayed{background:#fef3c7;color:#92400e}</style></head><body><header><span class="logo">✈</span><div><div style="font-size:.7rem;opacity:.75;letter-spacing:.1em">FLIGHT TRIP MANAGER</div><h1>Your Trips</h1></div></header><div class="container"><div class="filters"><input placeholder="Origin (e.g. JFK)" style="width:130px"><input placeholder="Destination" style="width:140px"><input type="date" style="width:145px"><select><option>Any airline</option><option>United</option><option>Delta</option></select><button class="search-btn">Search</button></div><div class="flight-card"><div class="fc-header"><span class="fc-route">JFK → LAX</span><span class="fc-price">$287</span></div><div class="fc-body"><div class="fc-field"><label>Departure</label><span>08:15 AM · Mar 20</span></div><div class="fc-field"><label>Arrival</label><span>11:42 AM · Mar 20</span></div><div class="fc-field"><label>Status</label><span class="status on-time">On Time</span></div><div class="fc-field"><label>Airline</label><span>United Airlines</span></div><div class="fc-field"><label>Flight #</label><span>UA 287</span></div><div class="fc-field"><label>Duration</label><span>5h 27m</span></div></div></div><div class="flight-card"><div class="fc-header"><span class="fc-route">LAX → ORD</span><span class="fc-price">$214</span></div><div class="fc-body"><div class="fc-field"><label>Departure</label><span>2:30 PM · Mar 25</span></div><div class="fc-field"><label>Arrival</label><span>8:52 PM · Mar 25</span></div><div class="fc-field"><label>Status</label><span class="status delayed">+22 min</span></div><div class="fc-field"><label>Airline</label><span>Delta Airlines</span></div><div class="fc-field"><label>Flight #</label><span>DL 1143</span></div><div class="fc-field"><label>Duration</label><span>4h 22m</span></div></div></div></div></body></html>`,
+      code: `<span class="tok-cmt">// FlightParser.java — Read & parse flight data file</span>\n<span class="tok-kw">import</span> <span class="tok-cls">java.io.*</span>;\n<span class="tok-kw">import</span> <span class="tok-cls">java.util.*</span>;\n\n<span class="tok-kw">public class</span> <span class="tok-cls">FlightParser</span> {\n\n  <span class="tok-kw">public static</span> <span class="tok-cls">List</span>&lt;<span class="tok-cls">Flight</span>&gt; <span class="tok-fn">parseFile</span>(<span class="tok-cls">String</span> <span class="tok-var">path</span>)\n      <span class="tok-kw">throws</span> <span class="tok-cls">IOException</span> {\n\n    <span class="tok-cls">List</span>&lt;<span class="tok-cls">Flight</span>&gt; <span class="tok-var">flights</span> = <span class="tok-kw">new</span> <span class="tok-cls">ArrayList</span>&lt;&gt;();\n\n    <span class="tok-kw">try</span> (<span class="tok-cls">BufferedReader</span> <span class="tok-var">br</span> = <span class="tok-kw">new</span> <span class="tok-cls">BufferedReader</span>(\n            <span class="tok-kw">new</span> <span class="tok-cls">FileReader</span>(<span class="tok-var">path</span>))) {\n\n      <span class="tok-cls">String</span> <span class="tok-var">line</span>;\n      <span class="tok-kw">while</span> ((<span class="tok-var">line</span> = <span class="tok-var">br</span>.<span class="tok-fn">readLine</span>()) != <span class="tok-kw">null</span>) {\n        <span class="tok-kw">if</span> (<span class="tok-var">line</span>.<span class="tok-fn">isBlank</span>() || <span class="tok-var">line</span>.<span class="tok-fn">startsWith</span>(<span class="tok-str">"#"</span>)) <span class="tok-kw">continue</span>;\n        <span class="tok-cls">String</span>[] <span class="tok-var">parts</span> = <span class="tok-var">line</span>.<span class="tok-fn">split</span>(<span class="tok-str">","</span>);\n        <span class="tok-kw">if</span> (<span class="tok-var">parts</span>.<span class="tok-var">length</span> &lt; <span class="tok-var">6</span>) <span class="tok-kw">continue</span>;\n        <span class="tok-var">flights</span>.<span class="tok-fn">add</span>(<span class="tok-kw">new</span> <span class="tok-cls">Flight</span>(\n          <span class="tok-var">parts</span>[<span class="tok-var">0</span>].<span class="tok-fn">trim</span>(), <span class="tok-var">parts</span>[<span class="tok-var">1</span>].<span class="tok-fn">trim</span>(),\n          <span class="tok-var">parts</span>[<span class="tok-var">2</span>].<span class="tok-fn">trim</span>(), <span class="tok-var">parts</span>[<span class="tok-var">3</span>].<span class="tok-fn">trim</span>(),\n          <span class="tok-var">parts</span>[<span class="tok-var">4</span>].<span class="tok-fn">trim</span>(), <span class="tok-var">parts</span>[<span class="tok-var">5</span>].<span class="tok-fn">trim</span>()\n        ));\n      }\n    }\n    <span class="tok-kw">return</span> <span class="tok-var">flights</span>;\n  }\n}`,
+      codeFile: 'FlightParser.java', codeLang: 'Java',
+    },
+  };
+
+  // ── MODAL STATE ──
+  let currentProject = null;
+  let currentTab = 'overview';
+
+  function openModal(id) {
+    currentProject = id;
+    currentTab = 'overview';
+    const p = projects[id];
+    document.getElementById('modal-icon').textContent = p.icon;
+    document.getElementById('modal-title').textContent = p.title;
+    document.getElementById('modal-subtitle').textContent = p.subtitle;
+    document.getElementById('modal-github-link').href = p.github;
+    ['overview','preview','code'].forEach(t => {
+      document.getElementById('tab-'+t).classList.toggle('active', t === 'overview');
+    });
+    renderTab('overview');
+    document.getElementById('modal-overlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('modal-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function handleOverlayClick(e) {
+    if (e.target === document.getElementById('modal-overlay')) closeModal();
+  }
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  function switchTab(tab) {
+    currentTab = tab;
+    ['overview','preview','code'].forEach(t => {
+      document.getElementById('tab-'+t).classList.toggle('active', t === tab);
+    });
+    renderTab(tab);
+  }
+
+  const checkSVG = `<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>`;
+
+  function renderTab(tab) {
+    const p = projects[currentProject];
+    const body = document.getElementById('modal-body');
+
+    if (tab === 'overview') {
+      body.innerHTML = `
+        <div class="overview-panel">
+          <div class="overview-left">
+            <p class="modal-description">${p.description}</p>
+            <div class="modal-section-label">Key Features</div>
+            <div class="feature-list">
+              ${p.features.map(f => `
+                <div class="feature-item">
+                  <div class="feature-check">${checkSVG}</div>
+                  ${f}
+                </div>`).join('')}
+            </div>
+          </div>
+          <div class="overview-right">
+            <div class="modal-section-label">Tech Stack</div>
+            <div class="stack-grid">
+              ${p.stack.map(s => `<span class="stack-badge">${s}</span>`).join('')}
+            </div>
+            <div class="modal-section-label" style="margin-top:1.25rem">Project Links</div>
+            <div class="project-links-panel">
+              <div class="project-link-item">
+                <span class="project-link-label">Source Code</span>
+                <a class="project-link-val" href="${p.github}" target="_blank">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+                  GitHub
+                </a>
+              </div>
+              <div class="project-link-item">
+                <span class="project-link-label">Status</span>
+                <span class="project-link-val" style="color:var(--accent-mid)">Completed</span>
+              </div>
+            </div>
+          </div>
+        </div>`;
+    } else if (tab === 'preview') {
+      body.innerHTML = `
+        <div class="preview-panel">
+          <div class="preview-frame-wrap">
+            <div class="preview-frame-bar">
+              <div class="frame-dot dot-red"></div>
+              <div class="frame-dot dot-yellow"></div>
+              <div class="frame-dot dot-green"></div>
+              <div class="frame-url">localhost:3000</div>
+            </div>
+            <iframe class="preview-iframe" id="preview-frame" title="Project preview"></iframe>
+          </div>
+        </div>`;
+      setTimeout(() => {
+        const f = document.getElementById('preview-frame');
+        if (f) f.srcdoc = p.previewHTML;
+      }, 10);
+    } else if (tab === 'code') {
+      body.innerHTML = `
+        <div class="code-panel">
+          <div class="code-header">
+            <div class="code-filename">
+              <span class="code-lang-badge">${p.codeLang}</span>
+              ${p.codeFile}
+            </div>
+            <button class="copy-btn" id="copy-btn" onclick="copyCode()">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copy
+            </button>
+          </div>
+          <pre><div class="code-lines">${wrapLines(p.code)}</div></pre>
+        </div>`;
+    }
+  }
+
+  function wrapLines(html) {
+    return html.split('\n').map(line =>
+      `<div class="code-line"><span>${line || ' '}</span></div>`
+    ).join('');
+  }
+
+  function copyCode() {
+    const p = projects[currentProject];
+    const raw = p.code.replace(/<[^>]+>/g, '');
+    navigator.clipboard.writeText(raw).then(() => {
+      const btn = document.getElementById('copy-btn');
+      if (!btn) return;
+      btn.classList.add('copied');
+      btn.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Copied!`;
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        btn.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy`;
+      }, 2000);
+    });
+  }
+
+  // ── SCROLL REVEAL ──
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

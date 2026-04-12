@@ -1434,23 +1434,23 @@
         </div>
       </div>
 
-      <div class="project-card reveal" onclick="openModal('guestbook')">
+     <div class="project-card reveal" onclick="openModal('mailinglist')">
         <div class="project-card-accent"></div>
-        <div class="project-icon">📋</div>
-        <h3>GuestBook Web App</h3>
-        <p>Database-driven ASP.NET GuestBook deployed to Azure using Visual Studio, LINQ, and SQL with full cloud integration.</p>
+        <div class="project-icon">📧</div>
+        <h3>Mailing List Web App</h3>
+        <p>Database-driven PHP mailing list app built with XAMPP, MySQL, and Apache. Dynamic form pulls data from MySQL and stores contacts via PHP MySQLi.</p>
         <div class="project-tags">
-          <span class="project-tag">ASP.NET</span>
-          <span class="project-tag">Azure</span>
-          <span class="project-tag">LINQ</span>
-          <span class="project-tag">SQL</span>
+          <span class="project-tag">PHP</span>
+          <span class="project-tag">MySQL</span>
+          <span class="project-tag">Apache</span>
+          <span class="project-tag">XAMPP</span>
         </div>
         <div class="project-footer">
           <div class="card-cta">
             View Details
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </div>
-          <a class="card-github" href="https://github.com/mahamedmusse" target="_blank" onclick="event.stopPropagation()">
+          <a class="card-github" href="https://github.com/mahamedmusse/mailing-list-php" target="_blank" onclick="event.stopPropagation()">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
             GitHub
           </a>
@@ -1690,6 +1690,10 @@
       description: 'A database-driven mailing list web application built with PHP, MySQL, and Apache via XAMPP. Users fill out a dynamic registration form populated from a MySQL database, submit their info, and get stored in a contacts table. Recreated from Paul Deitel\'s Internet and World Wide Web How to Program, 5th Edition (Fig. 19.20–19.21).',
       features: ['Dynamic form from MySQL data','PHP MySQLi connection','INSERT into contacts table','View all contacts page','Radio buttons from DB','Dropdown from DB','Form validation','XAMPP localhost deployment'],
       stack: ['PHP', 'MySQL', 'HTML5', 'CSS', 'Apache', 'XAMPP'],
+      previewHTML: `<!DOCTYPE html><html><head><style>*{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,sans-serif}body{background:#f5f5f5;color:#333;min-height:100vh}header{background:#4a90d9;color:white;padding:12px 20px}.logo{font-weight:700;font-size:1rem}.container{padding:20px;max-width:600px;margin:0 auto}.card{background:white;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);padding:20px;margin-bottom:16px}h2{font-size:.95rem;font-weight:700;margin-bottom:12px;color:#4a90d9;border-bottom:1px solid #eee;padding-bottom:6px}label{display:block;font-size:.75rem;font-weight:600;color:#555;margin-bottom:3px;margin-top:10px}label:first-of-type{margin-top:0}input[type=text]{width:100%;border:1px solid #ccc;border-radius:4px;padding:6px 8px;font-size:.82rem;color:#333}select{width:100%;border:1px solid #ccc;border-radius:4px;padding:6px 8px;font-size:.82rem;color:#333}.radio-group{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}.radio-group label{font-weight:400;display:flex;align-items:center;gap:4px;margin:0}.submit-btn{margin-top:16px;background:#4a90d9;color:white;border:none;padding:8px 24px;border-radius:4px;font-size:.85rem;font-weight:600;cursor:pointer;width:100%}.result{background:#e8f5e9;border:1px solid #a5d6a7;border-radius:8px;padding:16px;font-size:.82rem;line-height:1.7}.result strong{color:#2e7d32}.table-wrap{overflow-x:auto}.contacts-table{width:100%;border-collapse:collapse;font-size:.78rem}th,td{border:1px solid #ddd;padding:6px 10px;text-align:left}th{background:#4a90d9;color:white}tr:nth-child(even){background:#f2f2f2}</style></head><body><header><span class="logo">📧 Mailing List Registration</span></header><div class="container"><div class="card"><h2>User Information</h2><label>First Name</label><input type="text" value="Max" readonly><label>Last Name</label><input type="text" value="Musse" readonly><label>Email</label><input type="text" value="max@example.com" readonly><label>Phone</label><input type="text" value="732-555-0101" readonly></div><div class="card"><h2>Publications</h2><label>Which book would you like information about?</label><select><option>Internet &amp; WWW How to Program</option><option>C++ How to Program</option><option>Java How to Program</option></select></div><div class="card"><h2>Operating System</h2><div class="radio-group"><label><input type="radio" name="os" checked> Windows</label><label><input type="radio" name="os"> macOS</label><label><input type="radio" name="os"> Linux</label><label><input type="radio" name="os"> Other</label></div><button class="submit-btn">Register</button></div><div class="card"><div class="result"><strong>Hi Max.</strong> Thank you for completing the survey. You have been added to the Internet &amp; WWW How to Program mailing list.<br><br><strong>The following information has been saved in our database:</strong><br>Name: Max Musse<br>Email: max@example.com<br>Phone: 732-555-0101<br>OS: Windows</div></div><div class="card"><h2>All Contacts</h2><div class="table-wrap"><table class="contacts-table"><tr><th>ID</th><th>Last Name</th><th>First Name</th><th>Email</th><th>Phone</th><th>Book</th><th>OS</th></tr><tr><td>1</td><td>Musse</td><td>Max</td><td>max@example.com</td><td>732-555-0101</td><td>Internet &amp; WWW</td><td>Windows</td></tr><tr><td>2</td><td>Smith</td><td>Jane</td><td>jane@example.com</td><td>201-555-0198</td><td>Java How to Program</td><td>macOS</td></tr></table></div></div></div></body></html>`,
+      code: `<span class="tok-cmt"><!-- dynamicForm.php — Pulls books & OS from MySQL --></span>\n<span class="tok-tag">&lt;select</span> <span class="tok-attr">name</span>=<span class="tok-str">"book"</span><span class="tok-tag">&gt;</span>\n<span class="tok-kw">&lt;?php</span>\n  <span class="tok-var">$db</span> = <span class="tok-fn">mysqli_connect</span>(<span class="tok-str">'localhost'</span>,<span class="tok-str">'root'</span>,<span class="tok-str">''</span>,<span class="tok-str">'mailinglist'</span>);\n  <span class="tok-var">$res</span> = <span class="tok-fn">mysqli_query</span>(<span class="tok-var">$db</span>, <span class="tok-str">'SELECT * FROM books ORDER BY Title'</span>);\n  <span class="tok-kw">while</span> ( <span class="tok-var">$row</span> = <span class="tok-fn">mysqli_fetch_assoc</span>(<span class="tok-var">$res</span>) ) {\n    <span class="tok-kw">echo</span> <span class="tok-str">'&lt;option value="'</span> . <span class="tok-var">$row</span>[<span class="tok-str">'Title'</span>] . <span class="tok-str">'"&gt;'</span>\n       . <span class="tok-var">$row</span>[<span class="tok-str">'Title'</span>] . <span class="tok-str">'&lt;/option&gt;'</span>;\n  }\n<span class="tok-kw">?&gt;</span>\n<span class="tok-tag">&lt;/select&gt;</span>\n\n<span class="tok-cmt">// formDynamic.php — Insert into contacts table</span>\n<span class="tok-var">$result</span> = <span class="tok-fn">mysqli_query</span>( <span class="tok-var">$db</span>,\n  <span class="tok-str">"INSERT INTO contacts (LastName, FirstName, Email, Phone, Book, OS)"</span> .\n  <span class="tok-str">" VALUES ('$lname','$fname','$email','$phone','$book','$os')"</span> );\n\n<span class="tok-kw">if</span> ( <span class="tok-var">$result</span> ) {\n  <span class="tok-kw">echo</span> <span class="tok-str">"&lt;p&gt;Hi $fname. Thank you for completing the survey.&lt;/p&gt;"</span>;\n}`,
+      codeFile: 'dynamicForm.php',
+      codeLang: 'PHP',
     },
     quran: {
       title: 'Quran Learning Website',
